@@ -4,7 +4,7 @@ using System.Text;
 using NUnit.Framework;
 using System.Linq;
 using ApplicationToLearnTest;
-using Moq;
+
 
 namespace IntegratedTests
 {
@@ -66,16 +66,6 @@ namespace IntegratedTests
         {
             //Arrange
             var calc = new Calc(-8, -2, 11, 18, randomize1, randomize2);
-            //act
-            var actual = calc.Add();
-            Assert.Pass();
-        }
-        [Test]
-        public void AddTwoNegativeNumbers1()
-        {
-            //Arrange
-            var randomize2 = new Mock<Randomize>();
-            var calc = new Calc(-13, -8, -11, -6, randomize1, randomize2.Object);
             //act
             var actual = calc.Add();
             Assert.Pass();
@@ -232,6 +222,18 @@ namespace IntegratedTests
             Assert.Pass();
         }
         #endregion
+
+        //[Test]
+        //public void AddTwoNegativeNumbers1()
+        //{
+        //    //Arrange
+        //    var randomize2 = new Mock<Randomize>();
+        //    var calc = new Calc(-13, -8, -11, -6, randomize1, randomize2.Object);
+        //    //act
+        //    var actual = calc.Add();
+        //    Assert.Pass();
+        //
+        //}
     }
 }
 

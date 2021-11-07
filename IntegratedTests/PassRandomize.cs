@@ -23,8 +23,6 @@ namespace IntegratedTests
             var pass = new Pass(randomize, true, true, 1, 2);
             Assert.IsInstanceOf(typeof(Pass), pass);
             Assert.Pass();
-
-
         }
     }
 }

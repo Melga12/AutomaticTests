@@ -4,7 +4,6 @@ using System.Text;
 using NUnit.Framework;
 using System.Linq;
 using ApplicationToLearnTest;
-using Moq;
 
 namespace MyTests
 {
@@ -18,7 +17,7 @@ namespace MyTests
             var numbersManager = new NumbersManager();
             Assert.IsInstanceOf(typeof(NumbersManager), numbersManager);
         }
-
+        #region Ascending
         [Test]
         public void CheckAscendingPositiveNumbersList()
         {
@@ -32,33 +31,12 @@ namespace MyTests
         }
 
         [Test]
-        public void CheckDescendingPositiveNumbersList()
+        public void CheckAscendingNegativeNumbersList()
         {
             //Arrange
-            var numbers = new List<int>() { 4, 1, 5, 7, 3, 2 };
+            var numbers = new List<int>() { -4, -1, -5, -7, -3, -2 };
             var numbersManager = new NumbersManager();
-            //Act
-            var actual = numbersManager.SortNumbers(numbers, false);
-            var expect = new List<int>() { 7, 5, 4, 3, 2, 1 };
-            Assert.AreEqual(actual, expect);
-        }
-
-        [Test]
-        public void CheckDescendingNegativeNumbersList()
-        {
-            //Arrange
-            var numbers = new List<int>() { -1, -4, -5, -7, -3, -2 };
-            var numbersManager = new NumbersManager();
-            Assert.Throws<Exception>(() => numbersManager.SortNumbers(new List<int>() { -1, -2, -3, -4, -5, -7 }, false));
-        }
-
-        [Test]
-        public void CheckDescendingPositiveAndNegativeNumbersList()
-        {
-            //Arrange
-            var numbers = new List<int>() { -1, 4, -5, -7, 3, 2 };
-            var numbersManager = new NumbersManager();
-            Assert.Throws<Exception>(() => numbersManager.SortNumbers(new List<int>() { 4, 3, 2, -1, -5, -7 }, false));
+            Assert.Throws<Exception>(() => numbersManager.SortNumbers(new List<int>() { -7, -5, -4, -3, -2, -1 }, true));
         }
 
         [Test]
@@ -80,6 +58,82 @@ namespace MyTests
         }
 
         [Test]
+        public void CheckAscendingPositiveNumbersWithZeroList()
+        {
+            //Arrange
+            var numbers = new List<int>() { 1, 4, 6, 0, 3, 2 };
+            var numbersManager = new NumbersManager();
+            Assert.Throws<Exception>(() => numbersManager.SortNumbers(new List<int>() { 0, 1, 2, 3, 4, 6 }, true));
+        }
+
+        [Test]
+        public void CheckAscendingNegativeNumbersWithZeroList()
+        {
+            //Arrange
+            var numbers = new List<int>() { -1, -4, -6, 0 };
+            var numbersManager = new NumbersManager();
+            Assert.Throws<Exception>(() => numbersManager.SortNumbers(new List<int>() { -6, -4, -1, 0 }, true));
+        }
+
+        [Test]
+        public void CheckAscendingZerosList()
+        {
+            //Arrange
+            var numbers = new List<int>() { 0, 0, 0 };
+            var numbersManager = new NumbersManager();
+            Assert.Throws<Exception>(() => numbersManager.SortNumbers(new List<int>() { 0, 0, 0 }, true));
+        }
+        #endregion
+        #region Descending
+        [Test]
+        public void CheckDescendingPositiveNumbersList()
+        {
+            //Arrange
+            var numbers = new List<int>() { 4, 1, 5, 7, 3, 2 };
+            var numbersManager = new NumbersManager();
+            //Act
+            var actual = numbersManager.SortNumbers(numbers, false);
+            var expect = new List<int>() { 7, 5, 4, 3, 2, 1 };
+            Assert.AreEqual(actual, expect);
+        }
+
+        [Test]
+        public void CheckDescendingPositiveNumbersAndZeroList()
+        {
+            //Arrange
+            var numbers = new List<int>() { 1, 4, 0, 3, 2 };
+            var numbersManager = new NumbersManager();
+            Assert.Throws<Exception>(() => numbersManager.SortNumbers(new List<int>() { 4, 3, 2, 1, 0 }, false));
+        }
+
+        [Test]
+        public void CheckDescendingNegativeNumbersAndZeroList()
+        {
+            //Arrange
+            var numbers = new List<int>() { -1, -4, -5, 0, -7, -3, -2 };
+            var numbersManager = new NumbersManager();
+            Assert.Throws<Exception>(() => numbersManager.SortNumbers(new List<int>() { 0, -1, -2, -3, -4, -5, -7 }, false));
+        }
+
+        [Test]
+        public void CheckDescendingNegativeNumbersList()
+        {
+            //Arrange
+            var numbers = new List<int>() { -1, -4, -5, -7, -3, -2 };
+            var numbersManager = new NumbersManager();
+            Assert.Throws<Exception>(() => numbersManager.SortNumbers(new List<int>() { -1, -2, -3, -4, -5, -7 }, false));
+        }
+
+        [Test]
+        public void CheckDescendingPositiveAndNegativeNumbersList()
+        {
+            //Arrange
+            var numbers = new List<int>() { -1, 4, -5, -7, 3, 2 };
+            var numbersManager = new NumbersManager();
+            Assert.Throws<Exception>(() => numbersManager.SortNumbers(new List<int>() { 4, 3, 2, -1, -5, -7 }, false));
+        }
+
+        [Test]
         public void CheckDescendingPositiveAndNegativeNumbersWithZeroList()
         {
             //Arrange
@@ -87,6 +141,16 @@ namespace MyTests
             var numbersManager = new NumbersManager();
             Assert.Throws<Exception>(() => numbersManager.SortNumbers(new List<int>() { 7, 3, 1, 0, -2, -4, -5 }, false));
         }
+
+        [Test]
+        public void CheckDescendingZerosList()
+        {
+            //Arrange
+            var numbers = new List<int>() { 0, 0, 0 };
+            var numbersManager = new NumbersManager();
+            Assert.Throws<Exception>(() => numbersManager.SortNumbers(new List<int>() { 0, 0, 0 }, false));
+        }
+        #endregion
     }
 }
 

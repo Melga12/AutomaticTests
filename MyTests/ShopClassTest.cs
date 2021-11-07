@@ -15,7 +15,6 @@ namespace MyTests
         {
             //Arrange
             var shopClass = new ShopClass(1, 9);
-
             //Assert
             Assert.IsInstanceOf(typeof(ShopClass), shopClass);
             Assert.IsTrue(shopClass.Quantity == 1 && shopClass.Price == 9);
@@ -26,7 +25,6 @@ namespace MyTests
         {
             //Arrange
             var shopClass = new ShopClass(1, 9);
-
             //Act
             var actual = shopClass.CreateDiscount();
             var expect = 0;
@@ -39,7 +37,6 @@ namespace MyTests
         {
             //Arrange
             var shopClass = new ShopClass(1, 10);
-          
             //Act
             var actual = shopClass.CreateDiscount();
             var expect = 1 * 0.1;

@@ -4,7 +4,6 @@ using System.Text;
 using NUnit.Framework;
 using System.Linq;
 using ApplicationToLearnTest;
-using Moq;
 
 
 namespace MyTests
